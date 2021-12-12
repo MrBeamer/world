@@ -1,0 +1,16 @@
+.home-view {
+  height: 100vh;
+  width: 100%;
+}
+
+.home-view--light {
+  background-color: #f2f2f2;
+  color: #111517;
+  transition: all 0.5s linear;
+}
+
+.home-view--dark {
+  background-color: #202c36;
+  color: #fff;
+  transition: all 0.5s linear;
+}

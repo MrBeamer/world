@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
+  padding: 23px 80px;
+}
+
+.header__title {
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 33px;
+}
+
+.header--light {
+  background: #ffffff;
+  color: #111517;
+  transition: all 0.5s linear;
+}
+
+.header--dark {
+  background-color: #2b3844;
+  color: #fff;
+  transition: all 0.5s linear;
+}

@@ -1,0 +1,7 @@
+.button__toggle-dark-mode {
+  background-color: transparent;
+  border: none;
+  max-width: 108px;
+  text-align: center;
+  font-size: 32px;
+}
