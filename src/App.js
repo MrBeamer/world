@@ -8,6 +8,7 @@ import "./App.css";
 
 function App() {
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
+  const theme = isDarkModeActive ? "dark" : "light";
 
   function handleDarModeClick() {
     setIsDarkModeActive((prevState) => !prevState);
@@ -20,14 +21,12 @@ function App() {
         <Header
           onDarkModeClick={handleDarModeClick}
           isDarkModeActive={isDarkModeActive}
+          theme={theme}
         />
-        <Navbar />
+        <Navbar theme={theme} />
         <Routes>
-          <Route
-            path="/"
-            element={<HomeView isDarkModeActive={isDarkModeActive} />}
-          />
-          <Route path="/:country" element={<DetailView />} />
+          <Route path="/" element={<HomeView theme={theme} />} />
+          <Route path="/:country" element={<DetailView theme={theme} />} />
         </Routes>
       </div>
     </BrowserRouter>

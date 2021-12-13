@@ -1,0 +1,45 @@
+.card {
+  /* width: 264px;
+  height: 336px; */
+}
+
+.card__content {
+  margin: 24px 91px 46px 24px;
+}
+
+.card h2 {
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 26px;
+  margin: 24px 0 16px 0;
+  margin-bottom: 16px;
+}
+
+.card p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 8px;
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+.card span {
+  /* color: #848484; */
+  font-weight: 400;
+  opacity: 0.7;
+}
+/* Themes */
+
+.card.dark {
+  background-color: #2b3844;
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
+.card.light {
+  background: #ffffff;
+  color: #111517;
+  transition: all 0.5s linear;
+}

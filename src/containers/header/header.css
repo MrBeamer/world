@@ -4,6 +4,10 @@
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
   padding: 23px 80px;
+
+  /* background: #ffffff;
+  color: #111517;
+  transition: all 0.5s linear; */
 }
 
 .header__title {
@@ -12,14 +16,16 @@
   line-height: 33px;
 }
 
-.header--light {
-  background: #ffffff;
-  color: #111517;
+/* Themes */
+
+.header.dark {
+  background-color: #2b3844;
+  color: #fff;
   transition: all 0.5s linear;
 }
 
-.header--dark {
-  background-color: #2b3844;
-  color: #fff;
+.header.light {
+  background: #ffffff;
+  color: #111517;
   transition: all 0.5s linear;
 }
