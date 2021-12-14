@@ -12,15 +12,20 @@ export default function Navbar(props) {
         name="query"
         placeholder="Search for a country..."
       />
-      <select className={`nav__select ${theme}`}>
-        <option value="" disabled selected hidden>
+      <select
+        id="continent"
+        name="continent"
+        className={`nav__select ${theme}`}
+        defaultValue="Filter by Region"
+      >
+        <option value="Filter by Region" disabled hidden>
           Filter by Region
         </option>
-        <option>Africa</option>
-        <option>America</option>
-        <option>Asia</option>
-        <option>Europe</option>
-        <option>Oceania</option>
+        <option value="africa">Africa</option>
+        <option value="america">America</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
       </select>
     </nav>
   );

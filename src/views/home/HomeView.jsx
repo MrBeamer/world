@@ -3,11 +3,11 @@ import { Cards } from "../../containers";
 import "./homeView.css";
 
 export default function HomeView(props) {
-  const { theme } = props;
+  const { theme, countries } = props;
 
   return (
     <main className={`home-view ${theme}`}>
-      <Cards theme={theme} />
+      <Cards theme={theme} countries={countries} />
     </main>
   );
 }

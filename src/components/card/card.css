@@ -4,7 +4,12 @@
 }
 
 .card__content {
-  margin: 24px 91px 46px 24px;
+  margin: 24px 0 46px 24px;
+}
+
+.card__image {
+  width: 100%;
+  height: 160px;
 }
 
 .card h2 {

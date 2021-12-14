@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card } from "../../components";
 import "./cards.css";
 
 export default function Cards(props) {
-  const { theme } = props;
+  const { theme, countries } = props;
+
   return (
     <div className="cards">
-      <Card theme={theme}></Card>
+      {countries.map((country, index) => {
+        return <Card key={index} theme={theme} country={country}></Card>;
+      })}
     </div>
   );
 }
