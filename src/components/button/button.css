@@ -1,0 +1,17 @@
+.btn__nav {
+  margin: 48px 0 47px 80px;
+  padding: 10px 30px;
+  background: transparent;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.293139);
+  border-radius: 6px;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 20px;
+  color: #111517;
+  border: none;
+  cursor: pointer;
+}
+
+.fa-arrow-left {
+  margin-right: 10px;
+}

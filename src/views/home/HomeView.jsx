@@ -6,7 +6,7 @@ export default function HomeView(props) {
   const { theme, countries } = props;
 
   return (
-    <main className={`home-view ${theme}`}>
+    <main className={`home-view main ${theme}`}>
       <Cards theme={theme} countries={countries} />
     </main>
   );

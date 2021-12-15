@@ -1,15 +1,10 @@
-.home-view {
-  height: 100vh;
+/* .home-view {
   width: 100%;
+} */
 
-  /* background-color: #f2f2f2;
-  color: #111517;
-  transition: all 0.5s linear; */
-}
+/* Themes could delete because main class in app */
 
-/* Themes */
-
-.home-view.dark {
+/* .home-view.dark {
   background-color: #202c36;
   color: #fff;
   transition: all 0.5s linear;
@@ -19,4 +14,4 @@
   background-color: #f2f2f2;
   color: #111517;
   transition: all 0.5s linear;
-}
+} */

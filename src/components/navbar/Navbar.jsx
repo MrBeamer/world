@@ -30,5 +30,3 @@ export default function Navbar(props) {
     </nav>
   );
 }
-
-//finish the input and the options

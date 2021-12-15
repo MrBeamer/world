@@ -11,17 +11,32 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
+body.light {
+  background-color: #f2f2f2;
+  transition: all 0.5s linear;
+}
+
+body.dark {
+  background-color: #202c36;
+  transition: all 0.5s linear;
+}
+
 /* Testing */
 .main {
-  background-color: #f2f2f2;
+  width: 100%;
+  padding: 0 80px 47px 80px;
 }
 
-.app {
-  background-color: #f2f2f2;
-}
-
-.main-dark-mode {
+.main.dark {
   background-color: #202c36;
+  color: #fff;
+  transition: all 0.5s linear;
+}
+
+.main.light {
+  background-color: #f2f2f2;
+  color: #111517;
+  transition: all 0.5s linear;
 }
 
 /* Testing */
