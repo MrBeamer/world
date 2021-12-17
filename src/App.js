@@ -35,7 +35,7 @@ function App() {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
-        setCountries(data.slice(0, 8));
+        if (data) setCountries(data.slice(0, 8));
       } catch (error) {
         console.log(error);
       } finally {
