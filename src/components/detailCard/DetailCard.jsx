@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./detailCard.css";
 
 export default function DetailCard(props) {
-  const { countries } = props;
+  const { countries, theme } = props;
   const { country } = useParams();
 
   const trimmedCountry = country.replace(/-/g, " ");
@@ -40,13 +40,18 @@ export default function DetailCard(props) {
   // const tlDomain = foundCountry.tld;
 
   console.log(foundCountry);
-  if (foundCountry) console.log(Object.values(foundCountry.currencies)[0].name);
+  if (foundCountry)
+    console.log(Object.values(foundCountry.languages).join(", "));
   if (foundCountry === undefined)
     // console.log(Object.values(foundCountry.name.nativeName)[0].common);
 
     // console.log(
     //   foundCountry.name.nativeName[foundCountry.fifa.toLowerCase()].common
     // );
+
+    // {Object.values(foundCountry.languages).map((language, index) => (
+    //   <span key={index}> {language}</span>
+    // ))}
 
     // console.log(Object.values(foundCountry.languages));
 
@@ -92,28 +97,35 @@ export default function DetailCard(props) {
           </p>
           <p className="detail-card__text-element">
             Currencies:{" "}
-            <span>{Object.values(foundCountry.currencies)[0].name}</span>
+            <span>
+              {Object.values(foundCountry.currencies)[0]
+                .name.split(" ")
+                .join(", ")}
+            </span>
           </p>
           <p className="detail-card__text-element">
             Languages:
-            {Object.values(foundCountry.languages).map((language, index) => (
-              <span key={index}> {language}</span>
-            ))}
+            {<span> {Object.values(foundCountry.languages).join(", ")}</span>}
           </p>
         </div>
         <div className="detail-card__sub-content">
           <p className="detail-card__text-element">Border Countries:</p>
-          {foundCountry.borders ? (
-            foundCountry.borders.map((country, index) => {
-              return (
-                <span key={index} className="detail-card__border-item">
-                  {country}
-                </span>
-              );
-            })
-          ) : (
-            <span className="detail-card__border-item"> None</span>
-          )}
+          <div className="detail-card__borders">
+            {foundCountry.borders ? (
+              foundCountry.borders.map((country, index) => {
+                return (
+                  <span
+                    key={index}
+                    className={`detail-card__border-item ${theme}`}
+                  >
+                    {country}
+                  </span>
+                );
+              })
+            ) : (
+              <span className="detail-card__border-item"> None</span>
+            )}
+          </div>
         </div>
       </div>
     </div>

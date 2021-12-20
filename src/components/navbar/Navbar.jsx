@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.css";
 
 export default function Navbar(props) {
-  const { theme } = props;
+  const { theme, onQueryChange, query } = props;
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [searchedCountry, setSearchedCountry] = useState({});
+
   return (
     <nav className={`nav ${theme}`}>
       <input
@@ -10,7 +13,10 @@ export default function Navbar(props) {
         type="search"
         id="search"
         name="query"
+        onChange={onQueryChange}
+        value={query}
         placeholder="Search for a country..."
+        // defaultValue={query}
       />
       <select
         id="continent"

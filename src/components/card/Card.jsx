@@ -7,7 +7,8 @@ export default function Card(props) {
   const { theme, country } = props;
   console.log(country);
   const countryName = country.name.common;
-  const [capital] = country.capital;
+  const [capital] = country.capital ? country.capital : "No Capital";
+  // const [capital] = country.capital;
   const population = new Intl.NumberFormat("en-GB").format(country.population);
   const countrySlug = countryName.split(" ").join("-").toLowerCase();
 

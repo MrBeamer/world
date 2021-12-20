@@ -6,10 +6,12 @@ export default function Cards(props) {
   const { theme, countries } = props;
 
   return (
-    <div className="cards">
-      {countries.map((country, index) => {
-        return <Card key={index} theme={theme} country={country}></Card>;
-      })}
-    </div>
+    countries.length >= 1 && (
+      <div className="cards">
+        {countries.map((country, index) => {
+          return <Card key={index} theme={theme} country={country}></Card>;
+        })}
+      </div>
+    )
   );
 }
