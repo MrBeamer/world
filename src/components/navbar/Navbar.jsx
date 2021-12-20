@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./navbar.css";
+import { Filter } from "../../components";
 
 export default function Navbar(props) {
-  const { theme, onQueryChange, query } = props;
+  const { theme, onQueryChange, query, onFilterChange } = props;
   // const [isLoading, setIsLoading] = useState(false);
   // const [searchedCountry, setSearchedCountry] = useState({});
 
@@ -18,7 +19,8 @@ export default function Navbar(props) {
         placeholder="Search for a country..."
         // defaultValue={query}
       />
-      <select
+      <Filter theme={theme} onFilterChange={onFilterChange} />
+      {/* <select
         id="continent"
         name="continent"
         className={`nav__select ${theme}`}
@@ -32,7 +34,7 @@ export default function Navbar(props) {
         <option value="asia">Asia</option>
         <option value="europe">Europe</option>
         <option value="oceania">Oceania</option>
-      </select>
+      </select> */}
     </nav>
   );
 }

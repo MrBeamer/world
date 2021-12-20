@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { HomeView, DetailView } from "./views";
 import { Navbar } from "./components";
 import { Button } from "./components";
@@ -11,6 +11,8 @@ function App() {
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [countries, setCountries] = useState([]);
+  //testin
+  const [filteredCountries, setFilteredCountries] = useState([]);
   const [query, setQuery] = useState("");
   const theme = isDarkModeActive ? "dark" : "light";
   const location = useLocation();
@@ -29,6 +31,20 @@ function App() {
     console.log("clicked");
   }
 
+  //filter country by name
+  function handleFilterChange(event) {
+    console.log(event.currentTarget.value);
+    const region = event.target.value;
+    console.log(region);
+    const filteredByRegion = countries.filter(
+      (country) => country.region.toLowerCase() === region
+    );
+    setFilteredCountries(filteredByRegion);
+
+    // setCountries(filteredCountries);
+  }
+
+  // toggle dark mode
   useEffect(() => {
     const body = document.querySelector("body");
     if (isDarkModeActive === false) {
@@ -64,8 +80,12 @@ function App() {
         const response = await fetch(
           `https://restcountries.com/v3.1/name/${query}`
         );
-        const data = await response.json();
-        if (data) setCountries(data);
+        if (!response.ok) {
+          throw new Error(`${response.status} country not found.`);
+        } else {
+          const data = await response.json();
+          if (data) setCountries(data);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -82,14 +102,25 @@ function App() {
         theme={theme}
       />
       {location.pathname === "/" ? (
-        <Navbar theme={theme} onQueryChange={handleQueryChange} query={query} />
+        <Navbar
+          theme={theme}
+          onQueryChange={handleQueryChange}
+          query={query}
+          onFilterChange={handleFilterChange}
+        />
       ) : (
         <Button theme={theme}></Button>
       )}
       <Routes>
         <Route
           path="/"
-          element={<HomeView theme={theme} countries={countries} />}
+          element={
+            <HomeView
+              theme={theme}
+              countries={countries}
+              filteredCountries={filteredCountries}
+            />
+          }
         />
         <Route
           path="/:country"
