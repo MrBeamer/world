@@ -46,7 +46,7 @@
 
 .detail-card__image {
   width: 100%;
-  width: 559.71px;
+  max-width: 560px;
   border-radius: 8px;
 }
 

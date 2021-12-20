@@ -40,8 +40,6 @@ export default function DetailCard(props) {
   // const tlDomain = foundCountry.tld;
 
   console.log(foundCountry);
-  if (foundCountry)
-    console.log(Object.values(foundCountry.languages).join(", "));
   if (foundCountry === undefined)
     // console.log(Object.values(foundCountry.name.nativeName)[0].common);
 
@@ -60,6 +58,11 @@ export default function DetailCard(props) {
 
     // look movie api i have to call the api again but only get one country this fixes undefined and the depp nesting problem - to find the corresponding country use the name from the params
     return <h3>Loading</h3>;
+
+  // const prepareLanguages = (languages) => {
+  //   if (!languages) return;
+  //   return Object.values(languages);
+  // };
 
   return (
     <div className="detail-card">
@@ -98,9 +101,11 @@ export default function DetailCard(props) {
           <p className="detail-card__text-element">
             Currencies:{" "}
             <span>
-              {Object.values(foundCountry.currencies)[0]
-                .name.split(" ")
-                .join(", ")}
+              {foundCountry.currencies
+                ? Object.values(foundCountry.currencies)[0]
+                    ?.name.split(" ")
+                    .join(", ")
+                : "No own currency"}
             </span>
           </p>
           <p className="detail-card__text-element">

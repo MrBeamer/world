@@ -13,6 +13,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   //testin
   const [filteredCountries, setFilteredCountries] = useState([]);
+  const [searchedCountry, setSearchedCountry] = useState([]);
   const [query, setQuery] = useState("");
   const theme = isDarkModeActive ? "dark" : "light";
   const location = useLocation();
@@ -26,9 +27,13 @@ function App() {
   function handleQueryChange(event) {
     console.log(event.currentTarget.value);
     const input = event.target.value;
-    setQuery(input);
+    if (input.length > 0) {
+      setQuery(input);
+    } else {
+      setSearchedCountry(countries);
+      setQuery("");
+    }
     event.preventDefault();
-    console.log("clicked");
   }
 
   //filter country by name
@@ -40,8 +45,6 @@ function App() {
       (country) => country.region.toLowerCase() === region
     );
     setFilteredCountries(filteredByRegion);
-
-    // setCountries(filteredCountries);
   }
 
   // toggle dark mode
@@ -61,8 +64,7 @@ function App() {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
-        if (data) setCountries(data.slice(0, 27));
-        // if (data) setCountries(data.slice(0, 8));
+        if (data) setCountries(data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -84,7 +86,7 @@ function App() {
           throw new Error(`${response.status} country not found.`);
         } else {
           const data = await response.json();
-          if (data) setCountries(data);
+          if (data) setSearchedCountry(data);
         }
       } catch (error) {
         console.log(error);
@@ -119,6 +121,7 @@ function App() {
               theme={theme}
               countries={countries}
               filteredCountries={filteredCountries}
+              searchedCountry={searchedCountry}
             />
           }
         />

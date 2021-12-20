@@ -12,7 +12,7 @@ export default function Filter({ theme, onFilterChange }) {
     >
       <option value="Filter by Region">Filter by Region</option>
       <option value="africa">Africa</option>
-      <option value="america">America</option>
+      <option value="americas">America</option>
       <option value="asia">Asia</option>
       <option value="europe">Europe</option>
       <option value="oceania">Oceania</option>

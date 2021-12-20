@@ -5,10 +5,8 @@ import "./card.css";
 
 export default function Card(props) {
   const { theme, country } = props;
-  console.log(country);
   const countryName = country.name.common;
   const [capital] = country.capital ? country.capital : "No Capital";
-  // const [capital] = country.capital;
   const population = new Intl.NumberFormat("en-GB").format(country.population);
   const countrySlug = countryName.split(" ").join("-").toLowerCase();
 
@@ -17,7 +15,7 @@ export default function Card(props) {
       <Link to={`/${countrySlug}`}>
         <img
           className="card__image"
-          src={country.flags.png}
+          src={country.flags.svg}
           alt={`${countryName} flag`}
         ></img>
       </Link>
