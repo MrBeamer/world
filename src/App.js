@@ -10,7 +10,7 @@ import "./App.css";
 function App() {
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
   //testin
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchedCountry, setSearchedCountry] = useState([]);
@@ -18,10 +18,15 @@ function App() {
   const theme = isDarkModeActive ? "dark" : "light";
   const location = useLocation();
   console.log(location.pathname);
+  //testin
+  const [countries, setCountries] = useState({
+    all: [],
+    filtered: [],
+    searched: [],
+  });
 
   function handleDarModeClick() {
     setIsDarkModeActive((prevState) => !prevState);
-    console.log("clicked");
   }
 
   function handleQueryChange(event) {
@@ -30,13 +35,12 @@ function App() {
     if (input.length > 0) {
       setQuery(input);
     } else {
-      setSearchedCountry(countries);
+      setCountries(countries.all);
       setQuery("");
     }
     event.preventDefault();
   }
 
-  //filter country by name
   function handleFilterChange(event) {
     console.log(event.currentTarget.value);
     const region = event.target.value;
@@ -44,8 +48,69 @@ function App() {
     const filteredByRegion = countries.filter(
       (country) => country.region.toLowerCase() === region
     );
-    setFilteredCountries(filteredByRegion);
+
+    setCountries({ ...countries, filtered: filteredByRegion });
   }
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://restcountries.com/v3.1/all");
+        const data = await response.json();
+        if (data) setCountries({ ...countries, all: data });
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
+  console.log(countries);
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `https://restcountries.com/v3.1/name/${query}`
+        );
+        if (!response.ok) {
+          throw new Error(`${response.status} country not found.`);
+        } else {
+          const data = await response.json();
+          if (data) setCountries({ ...countries, searched: data });
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, [query]);
+
+  // function handleQueryChange(event) {
+  //   console.log(event.currentTarget.value);
+  //   const input = event.target.value;
+  //   if (input.length > 0) {
+  //     setQuery(input);
+  //   } else {
+  //     setSearchedCountry(countries);
+  //     setQuery("");
+  //   }
+  //   event.preventDefault();
+  // }
+
+  //filter country by name
+  // function handleFilterChange(event) {
+  //   console.log(event.currentTarget.value);
+  //   const region = event.target.value;
+  //   console.log(region);
+  //   const filteredByRegion = countries.filter(
+  //     (country) => country.region.toLowerCase() === region
+  //   );
+  //   setFilteredCountries(filteredByRegion);
+  // }
 
   // toggle dark mode
   useEffect(() => {
@@ -58,43 +123,43 @@ function App() {
   }, [isDarkModeActive]);
 
   //display all countries
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        if (data) setCountries(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-  console.log(countries);
+  // useEffect(() => {
+  //   (async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       const response = await fetch("https://restcountries.com/v3.1/all");
+  //       const data = await response.json();
+  //       if (data) setCountries(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   })();
+  // }, []);
+  // console.log(countries);
 
   //search for a country
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${query}`
-        );
-        if (!response.ok) {
-          throw new Error(`${response.status} country not found.`);
-        } else {
-          const data = await response.json();
-          if (data) setSearchedCountry(data);
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, [query]);
+  // useEffect(() => {
+  //   (async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       const response = await fetch(
+  //         `https://restcountries.com/v3.1/name/${query}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`${response.status} country not found.`);
+  //       } else {
+  //         const data = await response.json();
+  //         if (data) setSearchedCountry(data);
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   })();
+  // }, [query]);
 
   return (
     <div className="app">

@@ -20,21 +20,6 @@ export default function Navbar(props) {
         // defaultValue={query}
       />
       <Filter theme={theme} onFilterChange={onFilterChange} />
-      {/* <select
-        id="continent"
-        name="continent"
-        className={`nav__select ${theme}`}
-        defaultValue="Filter by Region"
-      >
-        <option value="Filter by Region" disabled hidden>
-          Filter by Region
-        </option>
-        <option value="africa">Africa</option>
-        <option value="america">America</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select> */}
     </nav>
   );
 }

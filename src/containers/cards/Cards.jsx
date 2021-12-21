@@ -4,7 +4,7 @@ import "./cards.css";
 
 export default function Cards(props) {
   const { theme, countries, filteredCountries, searchedCountry } = props;
-
+  console.log(countries);
   // const displayedCountries = function () {
   //   if (searchedCountry.length !== 0 && searchedCountry.length !== 250) {
   //     return searchedCountry;
