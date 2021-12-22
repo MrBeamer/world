@@ -4,7 +4,7 @@ import "./switch.css";
 export default function Switch(props) {
   const { onDarkModeClick, isDarkModeActive } = props;
   return (
-    <div className="button__toggle-dark-mode" onClick={onDarkModeClick}>
+    <div className="switch" onClick={onDarkModeClick}>
       {isDarkModeActive ? (
         <i className="fas fa-moon"></i>
       ) : (

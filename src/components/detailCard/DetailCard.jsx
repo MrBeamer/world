@@ -7,69 +7,26 @@ export default function DetailCard(props) {
   const { country } = useParams();
 
   const trimmedCountry = country.replace(/-/g, " ");
-  const foundCountry = countries.find(
+  const foundCountry = countries.all.find(
     (country) => country.name.common.toLowerCase() === trimmedCountry
   );
 
-  /// renders Loading as long foundCountry is undefined, so components below dont return undefined error
-
-  // const countryData = {
-  //   countryName: foundCountry.name.common,
-  //   flagUrl: foundCountry.flags.png,
-  //   region: foundCountry.region,
-  //   subRegion: foundCountry.subregion,
-  //   capital: foundCountry.capital,
-  //   borderCountries: foundCountry.borders,
-  //   currency: foundCountry.currency.name,
-  //   tlDomain: foundCountry.tld,
-  //   population: new Intl.NumberFormat("en-GB").format(foundCountry.population),
-  // };
-
-  // const countryName = foundCountry.name.common;
-  // const nativeName = foundCountry.name.nativeName.common;
-
-  // const population = new Intl.NumberFormat("en-GB").format(
-  //   foundCountry.population
-  // );
-  // const flagUrl = foundCountry.flags.png;
-  // const region = foundCountry.region;
-  // const subRegion = foundCountry.subregion;
-  // const capital = foundCountry.capital;
-  // const borderCountries = foundCountry.borders;
-  // const currency = foundCountry.currency.name;
-  // const tlDomain = foundCountry.tld;
-
-  console.log(foundCountry);
   if (foundCountry === undefined)
-    // console.log(Object.values(foundCountry.name.nativeName)[0].common);
-
-    // console.log(
-    //   foundCountry.name.nativeName[foundCountry.fifa.toLowerCase()].common
-    // );
-
-    // {Object.values(foundCountry.languages).map((language, index) => (
-    //   <span key={index}> {language}</span>
-    // ))}
-
-    // console.log(Object.values(foundCountry.languages));
-
-    // const languages = Object.values(foundCountry.languages);
-    // languages.map((language) => console.log(language));
-
-    // look movie api i have to call the api again but only get one country this fixes undefined and the depp nesting problem - to find the corresponding country use the name from the params
-    return <h3>Loading</h3>;
-
-  // const prepareLanguages = (languages) => {
-  //   if (!languages) return;
-  //   return Object.values(languages);
-  // };
+    return (
+      <div className={`lds-ring ${theme}`}>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
 
   return (
     <div className="detail-card">
       <img
         className="detail-card__image"
         src={foundCountry.flags.png}
-        alt={`${"countryName"} flag`}
+        alt={`${foundCountry.name.common} flag`}
       ></img>
       <div className="detail-card__content">
         <h2 className="detail-card__title">{foundCountry.name.common}</h2>

@@ -1,11 +1,10 @@
 import React from "react";
-import { DetailCard } from "../../components";
-import "./detailView.css";
+import { DetailCard } from "../components";
 
 export default function DetailView(props) {
   const { theme, countries } = props;
   return (
-    <main className={`detail-view main ${theme}`}>
+    <main className={`main ${theme}`}>
       <DetailCard countries={countries} theme={theme} />
     </main>
   );

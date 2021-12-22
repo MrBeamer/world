@@ -8,57 +8,61 @@ import { Header } from "./containers";
 import "./App.css";
 
 function App() {
-  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  // const [countries, setCountries] = useState([]);
-  //testin
-  const [filteredCountries, setFilteredCountries] = useState([]);
-  const [searchedCountry, setSearchedCountry] = useState([]);
-  const [query, setQuery] = useState("");
-  const theme = isDarkModeActive ? "dark" : "light";
-  const location = useLocation();
-  console.log(location.pathname);
-  //testin
   const [countries, setCountries] = useState({
     all: [],
     filtered: [],
     searched: [],
   });
+  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState("");
+  const theme = isDarkModeActive ? "dark" : "light";
+  const location = useLocation();
 
   function handleDarModeClick() {
     setIsDarkModeActive((prevState) => !prevState);
   }
 
+  console.log(isLoading);
+
+  //gets searched country from the searchfield
   function handleQueryChange(event) {
     console.log(event.currentTarget.value);
     const input = event.target.value;
-    if (input.length > 0) {
-      setQuery(input);
-    } else {
-      setCountries(countries.all);
-      setQuery("");
-    }
-    event.preventDefault();
+    input.length > 0 ? setQuery(input) : setQuery("");
   }
 
+  //filter country by name
   function handleFilterChange(event) {
     console.log(event.currentTarget.value);
     const region = event.target.value;
     console.log(region);
-    const filteredByRegion = countries.filter(
-      (country) => country.region.toLowerCase() === region
-    );
+    let filteredByRegion = "";
+
+    if (countries.searched.length > 1) {
+      filteredByRegion = countries.searched.filter(
+        (country) => country.region.toLowerCase() === region
+      );
+    } else {
+      filteredByRegion = countries.all.filter(
+        (country) => country.region.toLowerCase() === region
+      );
+    }
 
     setCountries({ ...countries, filtered: filteredByRegion });
   }
 
+  //display all countries
   useEffect(() => {
     (async () => {
       setIsLoading(true);
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
-        if (data) setCountries({ ...countries, all: data });
+        if (data)
+          setCountries((prevCountries) => {
+            return { ...prevCountries, all: data };
+          });
       } catch (error) {
         console.log(error);
       } finally {
@@ -68,49 +72,31 @@ function App() {
   }, []);
   console.log(countries);
 
+  //search for a country
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      try {
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${query}`
-        );
-        if (!response.ok) {
-          throw new Error(`${response.status} country not found.`);
-        } else {
-          const data = await response.json();
-          if (data) setCountries({ ...countries, searched: data });
+      if (query)
+        try {
+          const response = await fetch(
+            `https://restcountries.com/v3.1/name/${query}`
+          );
+          if (!response.ok) {
+            throw new Error(`${response.status} country not found.`);
+          } else {
+            const data = await response.json();
+            if (data)
+              setCountries((prevCountries) => {
+                return { ...prevCountries, searched: data };
+              });
+          }
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
     })();
   }, [query]);
-
-  // function handleQueryChange(event) {
-  //   console.log(event.currentTarget.value);
-  //   const input = event.target.value;
-  //   if (input.length > 0) {
-  //     setQuery(input);
-  //   } else {
-  //     setSearchedCountry(countries);
-  //     setQuery("");
-  //   }
-  //   event.preventDefault();
-  // }
-
-  //filter country by name
-  // function handleFilterChange(event) {
-  //   console.log(event.currentTarget.value);
-  //   const region = event.target.value;
-  //   console.log(region);
-  //   const filteredByRegion = countries.filter(
-  //     (country) => country.region.toLowerCase() === region
-  //   );
-  //   setFilteredCountries(filteredByRegion);
-  // }
 
   // toggle dark mode
   useEffect(() => {
@@ -121,45 +107,6 @@ function App() {
       body.className = "dark";
     }
   }, [isDarkModeActive]);
-
-  //display all countries
-  // useEffect(() => {
-  //   (async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const response = await fetch("https://restcountries.com/v3.1/all");
-  //       const data = await response.json();
-  //       if (data) setCountries(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   })();
-  // }, []);
-  // console.log(countries);
-
-  //search for a country
-  // useEffect(() => {
-  //   (async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       const response = await fetch(
-  //         `https://restcountries.com/v3.1/name/${query}`
-  //       );
-  //       if (!response.ok) {
-  //         throw new Error(`${response.status} country not found.`);
-  //       } else {
-  //         const data = await response.json();
-  //         if (data) setSearchedCountry(data);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   })();
-  // }, [query]);
 
   return (
     <div className="app">
@@ -181,14 +128,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <HomeView
-              theme={theme}
-              countries={countries}
-              filteredCountries={filteredCountries}
-              searchedCountry={searchedCountry}
-            />
-          }
+          element={<HomeView theme={theme} countries={countries} />}
         />
         <Route
           path="/:country"

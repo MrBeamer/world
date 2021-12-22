@@ -1,2 +1,2 @@
-export { default as HomeView } from "./home/HomeView";
-export { default as DetailView } from "./detail/DetailView";
+export { default as HomeView } from "./HomeView";
+export { default as DetailView } from "./DetailView";

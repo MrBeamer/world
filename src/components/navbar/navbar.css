@@ -15,29 +15,3 @@
   color: #111517;
   transition: all 0.5s linear;
 }
-
-.nav__search {
-  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
-  border-radius: 5px;
-  border: none;
-  padding: 18px 20px;
-}
-
-.nav__search.light {
-  background-color: #ffffff;
-  color: #848484;
-  transition: all 0.5s linear;
-}
-
-.nav__search.dark {
-  background-color: #2b3844;
-  color: #ffffff;
-  transition: all 0.5s linear;
-}
-
-::placeholder,
-.nav__search {
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 20px;
-}
