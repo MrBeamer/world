@@ -16,10 +16,6 @@ export default function Cards(props) {
     }
   }, [countries]);
 
-  console.log(renderCountries);
-
-  console.log(renderCountries?.length);
-
   return (
     renderCountries && (
       <div className="cards">

@@ -23,7 +23,7 @@ function App() {
     setIsDarkModeActive((prevState) => !prevState);
   }
 
-  console.log(isLoading);
+  console.log("Is loading: " + isLoading);
 
   //gets searched country from the searchfield
   function handleQueryChange(event) {

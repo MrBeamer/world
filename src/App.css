@@ -7,6 +7,11 @@
   scroll-behavior: smooth;
 }
 
+h1,
+h2 {
+  margin: 0;
+}
+
 body {
   font-family: "Nunito Sans", sans-serif;
 }
