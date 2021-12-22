@@ -1,54 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "../../components";
 import "./cards.css";
 
 export default function Cards(props) {
-  const { theme, countries, filteredCountries, searchedCountry } = props;
-  console.log(countries);
-  // const displayedCountries = function () {
-  //   if (searchedCountry.length !== 0 && searchedCountry.length !== 250) {
-  //     return searchedCountry;
-  //   } else if (filteredCountries.length >= 1) {
-  //     return filteredCountries;
+  const { theme, countries } = props;
+  const [renderCountries, setRenderCountries] = useState([]);
+
+  useEffect(() => {
+    if (
+      countries.searched.length !== 0 &&
+      countries.searched.length < 20 &&
+      countries.filtered.length === 0
+    ) {
+      setRenderCountries(countries.searched);
+    } else if (
+      countries.filtered.length >= 1
+      // countries.searched.length > 2
+    ) {
+      setRenderCountries(countries.filtered);
+    } else {
+      setRenderCountries(countries.all);
+    }
+  }, [countries]);
+  console.log(renderCountries);
+  // const renderCountries = () => {
+  //   if (
+  //     countries.searched.length !== 0 &&
+  //     countries.searched.length < 20 &&
+  //     countries.filtered.length === 0
+  //   ) {
+  //     return countries.searched;
+  //   } else if (
+  //     countries.filtered.length >= 1 ||
+  //     countries.searched.length > 2
+  //   ) {
+  //     return countries.filtered;
   //   } else {
-  //     return countries;
+  //     return countries.all;
   //   }
   // };
 
-  // console.log(displayedCountries());
-
-  // return (
-  //   displayedCountries.length >= 1 && (
-  //     <div className="cards">
-  //       {displayedCountries.map((country, index) => {
-  //         return <Card key={index} theme={theme} country={country}></Card>;
-  //       })}
-  //     </div>
-  //   )
-  // );
-
-  if (searchedCountry.length !== 0 && searchedCountry.length !== 250)
-    return (
-      <div className="cards">
-        {searchedCountry.map((country, index) => {
-          return <Card key={index} theme={theme} country={country}></Card>;
-        })}
-      </div>
-    );
-
-  if (filteredCountries.length >= 1)
-    return (
-      <div className="cards">
-        {filteredCountries.map((country, index) => {
-          return <Card key={index} theme={theme} country={country}></Card>;
-        })}
-      </div>
-    );
+  console.log(renderCountries?.length);
 
   return (
-    countries.length >= 1 && (
+    renderCountries && (
       <div className="cards">
-        {countries.map((country, index) => {
+        {renderCountries.map((country, index) => {
           return <Card key={index} theme={theme} country={country}></Card>;
         })}
       </div>

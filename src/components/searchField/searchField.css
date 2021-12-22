@@ -1,0 +1,25 @@
+.search-field {
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
+  border-radius: 5px;
+  border: none;
+  padding: 18px 20px;
+}
+
+.search-field.light {
+  background-color: #ffffff;
+  color: #848484;
+  transition: all 0.5s linear;
+}
+
+.search-field.dark {
+  background-color: #2b3844;
+  color: #ffffff;
+  transition: all 0.5s linear;
+}
+
+::placeholder,
+.search-field {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}

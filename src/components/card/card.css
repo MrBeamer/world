@@ -12,7 +12,7 @@
   border-radius: 8px 8px 0 0;
 }
 
-.card h2 {
+.card__title {
   font-weight: 800;
   font-size: 18px;
   line-height: 26px;
@@ -20,23 +20,22 @@
   margin-bottom: 16px;
 }
 
-.card p {
+.card__info {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
   margin-bottom: 8px;
 }
-.card p:last-child {
+.card__info:last-child {
   margin-bottom: 0;
 }
 
-.card span {
-  /* color: #848484; */
+.card__info span {
   font-weight: 400;
   opacity: 0.7;
 }
-/* Themes */
 
+/* Themes */
 .card.dark {
   background-color: #2b3844;
   color: #fff;

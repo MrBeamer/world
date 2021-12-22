@@ -4,10 +4,8 @@ import "./button.css";
 
 export default function Button({ theme }) {
   return (
-    <Link to="/">
-      <button className={`btn__nav ${theme}`}>
-        <i className="fas fa-arrow-left"></i> <span>Back</span>
-      </button>
+    <Link className={`btn ${theme}`} to="/">
+      <i className="fas fa-arrow-left"></i> <span>Back</span>
     </Link>
   );
 }

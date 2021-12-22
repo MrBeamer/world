@@ -1,7 +1,12 @@
-.button__toggle-dark-mode {
+.switch {
   background-color: transparent;
   border: none;
   max-width: 108px;
   text-align: center;
-  font-size: 32px;
+  font-size: 24px;
+}
+
+.fa-moon,
+.fa-sun {
+  transition: all 0.3s linear;
 }

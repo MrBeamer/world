@@ -21,14 +21,14 @@ export default function Card(props) {
       </Link>
 
       <div className="card__content">
-        <h2>{countryName}</h2>
-        <p>
+        <h2 className="card__title">{country.name.common}</h2>
+        <p className="card__info">
           Population: <span>{population}</span>
         </p>
-        <p>
+        <p className="card__info">
           Region: <span>{country.region}</span>
         </p>
-        <p>
+        <p className="card__info">
           Capital: <span>{capital}</span>
         </p>
       </div>
