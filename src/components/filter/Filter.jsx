@@ -9,6 +9,7 @@ export default function Filter({ theme, onFilterChange }) {
       name="continent"
       className={`filter__select ${theme}`}
       defaultValue="Filter by Region"
+      aria-label="filter continent"
     >
       <option value="">Filter by Region</option>
       <option value="africa">Africa</option>

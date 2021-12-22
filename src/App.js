@@ -27,16 +27,14 @@ function App() {
 
   //gets searched country from the searchfield
   function handleQueryChange(event) {
-    console.log(event.currentTarget.value);
     const input = event.target.value;
     input.length > 0 ? setQuery(input) : setQuery("");
+    setCountries({ ...countries, searched: [] });
   }
 
   //filter country by name
   function handleFilterChange(event) {
-    console.log(event.currentTarget.value);
     const region = event.target.value;
-    console.log(region);
     let filteredByRegion = "";
 
     if (countries.searched.length > 1) {

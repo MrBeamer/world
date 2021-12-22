@@ -7,38 +7,16 @@ export default function Cards(props) {
   const [renderCountries, setRenderCountries] = useState([]);
 
   useEffect(() => {
-    if (
-      countries.searched.length !== 0 &&
-      countries.searched.length < 20 &&
-      countries.filtered.length === 0
-    ) {
-      setRenderCountries(countries.searched);
-    } else if (
-      countries.filtered.length >= 1
-      // countries.searched.length > 2
-    ) {
+    if (countries.filtered.length >= 1) {
       setRenderCountries(countries.filtered);
+    } else if (countries.searched.length !== 0) {
+      setRenderCountries(countries.searched);
     } else {
       setRenderCountries(countries.all);
     }
   }, [countries]);
+
   console.log(renderCountries);
-  // const renderCountries = () => {
-  //   if (
-  //     countries.searched.length !== 0 &&
-  //     countries.searched.length < 20 &&
-  //     countries.filtered.length === 0
-  //   ) {
-  //     return countries.searched;
-  //   } else if (
-  //     countries.filtered.length >= 1 ||
-  //     countries.searched.length > 2
-  //   ) {
-  //     return countries.filtered;
-  //   } else {
-  //     return countries.all;
-  //   }
-  // };
 
   console.log(renderCountries?.length);
 
