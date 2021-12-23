@@ -16,17 +16,20 @@ body {
   font-family: "Nunito Sans", sans-serif;
 }
 
-body.light {
+.app {
+  min-height: 100vh;
+}
+
+.app.light {
   background-color: #f2f2f2;
   transition: all 0.5s linear;
 }
 
-body.dark {
+.app.dark {
   background-color: #202c36;
   transition: all 0.5s linear;
 }
 
-/* Testing */
 .main {
   width: 100%;
   padding: 0 80px 47px 80px;
@@ -154,7 +157,7 @@ body.dark {
     margin-bottom: 16px;
   }
 
-  .btn__nav {
+  .btn {
     margin: 40px 0 64px 28px;
     padding: 10px 28px;
   }

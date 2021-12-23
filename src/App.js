@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./helper/ThemeContext";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { HomeView, DetailView } from "./views";
-import { Navbar } from "./components";
-import { Button } from "./components";
+import { Navbar, Button } from "./components";
 import { Header } from "./containers";
-
 import "./App.css";
 
 function App() {
@@ -13,17 +12,13 @@ function App() {
     filtered: [],
     searched: [],
   });
-  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
-  const theme = isDarkModeActive ? "dark" : "light";
   const location = useLocation();
 
-  function handleDarModeClick() {
-    setIsDarkModeActive((prevState) => !prevState);
-  }
-
   console.log("Is loading: " + isLoading);
+  const context = useContext(ThemeContext);
+  console.log(context);
 
   //gets searched country from the searchfield
   function handleQueryChange(event) {
@@ -96,41 +91,23 @@ function App() {
     })();
   }, [query]);
 
-  // toggle dark mode
-  useEffect(() => {
-    const body = document.querySelector("body");
-    if (isDarkModeActive === false) {
-      body.className = "light";
-    } else {
-      body.className = "dark";
-    }
-  }, [isDarkModeActive]);
-
   return (
-    <div className="app">
-      <Header
-        onDarkModeClick={handleDarModeClick}
-        isDarkModeActive={isDarkModeActive}
-        theme={theme}
-      />
+    <div className={`app ${context.theme}`}>
+      <Header />
       {location.pathname === "/" ? (
         <Navbar
-          theme={theme}
           onQueryChange={handleQueryChange}
           query={query}
           onFilterChange={handleFilterChange}
         />
       ) : (
-        <Button theme={theme}></Button>
+        <Button />
       )}
       <Routes>
-        <Route
-          path="/"
-          element={<HomeView theme={theme} countries={countries} />}
-        />
+        <Route path="/" element={<HomeView countries={countries} />} />
         <Route
           path="/:country"
-          element={<DetailView theme={theme} countries={countries} />}
+          element={<DetailView countries={countries} />}
         />
       </Routes>
     </div>

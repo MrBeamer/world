@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../helper/ThemeContext";
 import { DetailCard } from "../components";
 
-export default function DetailView(props) {
-  const { theme, countries } = props;
+export default function DetailView({ countries }) {
+  const context = useContext(ThemeContext);
+
   return (
-    <main className={`main ${theme}`}>
-      <DetailCard countries={countries} theme={theme} />
+    <main className={`main ${context.theme}`}>
+      <DetailCard countries={countries} theme={context.theme} />
     </main>
   );
 }

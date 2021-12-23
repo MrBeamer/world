@@ -10,3 +10,46 @@
 .fa-sun {
   transition: all 0.3s linear;
 }
+
+/* animated switch */
+
+.outer-circle {
+  position: relative;
+  border-radius: 40px;
+  width: 80px;
+  height: 40px;
+  transition: all 0.5s linear;
+}
+
+.inner-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: 40px;
+  width: 40px;
+  height: 38px;
+  transition: all 0.5s linear;
+}
+
+.outer-circle.light {
+  background: #f2f2f2;
+}
+
+.outer-circle.dark {
+  background: #202c36;
+}
+
+.inner-circle.light {
+  border: 1px solid #f2f2f2;
+  color: #111517;
+  background-color: #fff;
+  transform: translateX(0%);
+}
+
+.inner-circle.dark {
+  border: 1px solid #202c36;
+  color: #fff;
+  background-color: #2b3844;
+  transform: translateX(100%);
+}
