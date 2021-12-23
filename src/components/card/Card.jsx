@@ -15,7 +15,7 @@ export default function Card(props) {
       <Link to={`/${countrySlug}`}>
         <img
           className="card__image"
-          src={country.flags.svg}
+          src={country.flags.png}
           alt={`${countryName} flag`}
         ></img>
       </Link>
