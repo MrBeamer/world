@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { HomeView, DetailView } from "./views";
 import { Navbar, Button } from "./components";
 import { Header } from "./containers";
+import useFetch from "./helper/useFetch";
 import "./App.css";
 
 function App() {
@@ -12,13 +13,27 @@ function App() {
     filtered: [],
     searched: [],
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const context = useContext(ThemeContext);
   const [query, setQuery] = useState("");
   const location = useLocation();
 
-  console.log("Is loading: " + isLoading);
-  const context = useContext(ThemeContext);
-  console.log(context);
+  const { apiData, isLoading } = useFetch(
+    query === ""
+      ? "https://restcountries.com/v3.1/all"
+      : `https://restcountries.com/v3.1/name/${query}`
+  );
+
+  //get all countries or searched country
+
+  useEffect(() => {
+    setCountries((prevCountries) => {
+      return query === ""
+        ? { ...prevCountries, all: apiData }
+        : { ...prevCountries, searched: apiData };
+    });
+  }, [apiData, query]);
+
+  console.log(countries);
 
   //gets searched country from the searchfield
   function handleQueryChange(event) {
@@ -27,7 +42,7 @@ function App() {
     setCountries({ ...countries, searched: [] });
   }
 
-  //filter country by name
+  //filter country by region
   function handleFilterChange(event) {
     const region = event.target.value;
     let filteredByRegion = "";
@@ -45,52 +60,6 @@ function App() {
     setCountries({ ...countries, filtered: filteredByRegion });
   }
 
-  //display all countries
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        const data = await response.json();
-        if (data)
-          setCountries((prevCountries) => {
-            return { ...prevCountries, all: data };
-          });
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-  console.log(countries);
-
-  //search for a country
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-      if (query)
-        try {
-          const response = await fetch(
-            `https://restcountries.com/v3.1/name/${query}`
-          );
-          if (!response.ok) {
-            throw new Error(`${response.status} country not found.`);
-          } else {
-            const data = await response.json();
-            if (data)
-              setCountries((prevCountries) => {
-                return { ...prevCountries, searched: data };
-              });
-          }
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setIsLoading(false);
-        }
-    })();
-  }, [query]);
-
   return (
     <div className={`app ${context.theme}`}>
       <Header />
@@ -104,7 +73,10 @@ function App() {
         <Button />
       )}
       <Routes>
-        <Route path="/" element={<HomeView countries={countries} />} />
+        <Route
+          path="/"
+          element={<HomeView countries={countries} isLoading={isLoading} />}
+        />
         <Route
           path="/:country"
           element={<DetailView countries={countries} />}

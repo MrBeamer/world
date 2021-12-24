@@ -6,9 +6,9 @@ export default function Switch() {
   const context = useContext(ThemeContext);
 
   return (
-    <div className={`outer-circle ${context.theme}`}>
+    <div className={`switch__outer-circle ${context.theme}`}>
       <div
-        className={`inner-circle ${context.theme}`}
+        className={`switch__inner-circle ${context.theme}`}
         onClick={context.onDarkModeClick}
       >
         {context.theme === "dark" ? (

@@ -13,7 +13,7 @@
 
 /* animated switch */
 
-.outer-circle {
+.switch__outer-circle {
   position: relative;
   border-radius: 40px;
   width: 80px;
@@ -21,7 +21,7 @@
   transition: all 0.5s linear;
 }
 
-.inner-circle {
+.switch__inner-circle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,22 +32,22 @@
   transition: all 0.5s linear;
 }
 
-.outer-circle.light {
+.switch__outer-circle.light {
   background: #f2f2f2;
 }
 
-.outer-circle.dark {
+.switch__outer-circle.dark {
   background: #202c36;
 }
 
-.inner-circle.light {
+.switch__inner-circle.light {
   border: 1px solid #f2f2f2;
   color: #111517;
   background-color: #fff;
   transform: translateX(0%);
 }
 
-.inner-circle.dark {
+.switch__inner-circle.dark {
   border: 1px solid #202c36;
   color: #fff;
   background-color: #2b3844;
