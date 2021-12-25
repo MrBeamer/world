@@ -1,41 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card } from "../../components";
+import { FilterContext } from "../../helper/FilterContext";
 import "./cards.css";
 
 export default function Cards(props) {
-  const { theme, countries, query, filterParam } = props;
+  const { theme, countries } = props;
   const [searchParam] = useState(["name"]);
+
+  const context = useContext(FilterContext);
 
   function searchAndFilter(items) {
     // eslint-disable-next-line array-callback-return
     return items?.filter((item) => {
-      if (item.region === filterParam) {
+      if (item.region === context.filterParam) {
         return searchParam.some((newItem) => {
           return (
             item[newItem]?.common
-              ?.toString()
-              ?.toLowerCase()
-              ?.indexOf(query.toLowerCase()) > -1
+              .toString()
+              .toLowerCase()
+              .indexOf(context.query.toLowerCase()) > -1
           );
         });
-      } else if (filterParam === "All") {
+      } else if (context.filterParam === "All") {
         return searchParam.some((newItem) => {
           return (
             item[newItem]?.common
-              ?.toString()
-              ?.toLowerCase()
-              ?.indexOf(query.toLowerCase()) > -1
+              .toString()
+              .toLowerCase()
+              .indexOf(context.query.toLowerCase()) > -1
           );
         });
       }
     });
   }
-
-  function test(items) {
-    return searchParam.some((newItem) => newItem);
-  }
-  console.log(test(countries));
-  // console.log(countries.map((one) => console.log(one.name)));
 
   return (
     countries && (

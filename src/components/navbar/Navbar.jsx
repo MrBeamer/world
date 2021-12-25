@@ -1,21 +1,23 @@
 import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
 import { ThemeContext } from "../../helper/ThemeContext";
+import { Searchfield, Filter, Button } from "../../components";
 import "./navbar.css";
-import { Filter } from "../../components";
-import { Searchfield } from "../../components";
 
-export default function Navbar(props) {
-  const { onQueryChange, query, onFilterChange } = props;
+export default function Navbar() {
   const context = useContext(ThemeContext);
+  const location = useLocation();
 
   return (
     <nav className={`nav ${context.theme}`}>
-      <Searchfield
-        theme={context.theme}
-        onQueryChange={onQueryChange}
-        query={query}
-      />
-      <Filter theme={context.theme} onFilterChange={onFilterChange} />
+      {location.pathname === "/" ? (
+        <>
+          <Searchfield theme={context.theme} />
+          <Filter theme={context.theme} />
+        </>
+      ) : (
+        <Button theme={context.theme} />
+      )}
     </nav>
   );
 }

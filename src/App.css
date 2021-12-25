@@ -103,7 +103,6 @@ body {
   .detail-card {
     flex-direction: column;
     gap: 44px;
-    align-items: center;
   }
 
   .detail-card__text-element:last-child {
@@ -145,7 +144,7 @@ body {
   }
 
   .nav {
-    padding: 24px 16px 47px 16px;
+    padding: 40px 16px 64px 28px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -183,7 +182,7 @@ body {
   }
 
   .btn {
-    margin: 40px 0 64px 28px;
+    max-width: 116px;
     padding: 10px 28px;
   }
 }

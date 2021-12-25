@@ -1,11 +1,9 @@
 .detail-card {
   display: flex;
   gap: 144px;
-  align-content: center;
   font-weight: 600;
   font-size: 16px;
   line-height: 32px;
-  align-items: unset;
 }
 
 .detail-card__title {

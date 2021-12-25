@@ -1,9 +1,14 @@
 .card {
   border-radius: 8px;
+  animation-name: reverseScale;
+  animation-duration: 0.4s;
+  animation-fill-mode: reverse;
 }
 
 .card:hover {
-  transform: scale(1.1);
+  animation-name: scale;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
   filter: brightness(1.1);
 }
 
@@ -51,4 +56,23 @@
   background: #ffffff;
   color: #111517;
   transition: all 0.5s linear;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes reverseScale {
+  0% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
