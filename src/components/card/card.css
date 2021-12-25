@@ -2,6 +2,11 @@
   border-radius: 8px;
 }
 
+.card:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
 .card__content {
   margin: 24px 0 46px 24px;
 }

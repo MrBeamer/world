@@ -23,6 +23,7 @@
 
 .switch__inner-circle {
   display: flex;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   position: absolute;
