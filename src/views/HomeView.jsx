@@ -2,9 +2,19 @@ import React, { useContext } from "react";
 import { ThemeContext } from "../helper/ThemeContext";
 import { Cards } from "../containers";
 
-export default function HomeView({ countries, isLoading }) {
+export default function HomeView({
+  countries,
+  isLoading,
+  serverError,
+  query,
+  filterParam,
+}) {
   const context = useContext(ThemeContext);
+  console.log(serverError);
 
+  if (serverError) {
+    return <p>serverError</p>;
+  }
   return (
     <main className={`main ${context.theme}`}>
       {isLoading ? (
@@ -15,7 +25,12 @@ export default function HomeView({ countries, isLoading }) {
           <div></div>
         </div>
       ) : (
-        <Cards theme={context.theme} countries={countries} />
+        <Cards
+          theme={context.theme}
+          countries={countries}
+          query={query}
+          filterParam={filterParam}
+        />
       )}
     </main>
   );

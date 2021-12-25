@@ -14,6 +14,7 @@ export default function useFetch(url) {
         if (data) setApiData(data);
       } catch (error) {
         setServerError(error);
+        setApiData([]);
       } finally {
         setIsLoading(false);
       }

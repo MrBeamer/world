@@ -8,56 +8,33 @@ import useFetch from "./helper/useFetch";
 import "./App.css";
 
 function App() {
-  const [countries, setCountries] = useState({
-    all: [],
-    filtered: [],
-    searched: [],
-  });
+  const [countries, setCountries] = useState([]);
   const context = useContext(ThemeContext);
   const [query, setQuery] = useState("");
+  const [filterParam, setFilterParam] = useState("All");
   const location = useLocation();
 
-  const { apiData, isLoading } = useFetch(
-    query === ""
-      ? "https://restcountries.com/v3.1/all"
-      : `https://restcountries.com/v3.1/name/${query}`
+  const { apiData, isLoading, serverError } = useFetch(
+    "https://restcountries.com/v3.1/all"
   );
 
-  //get all countries or searched country
-
+  //get all countries
   useEffect(() => {
-    setCountries((prevCountries) => {
-      return query === ""
-        ? { ...prevCountries, all: apiData }
-        : { ...prevCountries, searched: apiData };
-    });
-  }, [apiData, query]);
+    setCountries(apiData);
+  }, [apiData]);
 
   console.log(countries);
 
-  //gets searched country from the searchfield
+  //get searched country from the searchfield
   function handleQueryChange(event) {
     const input = event.target.value;
     input.length > 0 ? setQuery(input) : setQuery("");
-    setCountries({ ...countries, searched: [] });
   }
 
-  //filter country by region
+  //get selected region from dropdown
   function handleFilterChange(event) {
     const region = event.target.value;
-    let filteredByRegion = "";
-
-    if (countries.searched.length > 1) {
-      filteredByRegion = countries.searched.filter(
-        (country) => country.region.toLowerCase() === region
-      );
-    } else {
-      filteredByRegion = countries.all.filter(
-        (country) => country.region.toLowerCase() === region
-      );
-    }
-
-    setCountries({ ...countries, filtered: filteredByRegion });
+    setFilterParam(region);
   }
 
   return (
@@ -75,7 +52,15 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<HomeView countries={countries} isLoading={isLoading} />}
+          element={
+            <HomeView
+              countries={countries}
+              isLoading={isLoading}
+              serverError={serverError}
+              query={query}
+              filterParam={filterParam}
+            />
+          }
         />
         <Route
           path="/:country"

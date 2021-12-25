@@ -19,7 +19,6 @@ export default function Card(props) {
           alt={`${countryName} flag`}
         ></img>
       </Link>
-
       <div className="card__content">
         <h2 className="card__title">{country.name.common}</h2>
         <p className="card__info">
