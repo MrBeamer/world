@@ -1,9 +1,11 @@
 .header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
   padding: 23px 80px;
+  z-index: 1;
 }
 
 .header__wrapper {
