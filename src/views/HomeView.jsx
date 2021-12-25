@@ -10,7 +10,6 @@ export default function HomeView({
   filterParam,
 }) {
   const context = useContext(ThemeContext);
-  console.log(serverError);
 
   if (serverError) {
     return <p>serverError</p>;

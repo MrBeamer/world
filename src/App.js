@@ -23,8 +23,6 @@ function App() {
     setCountries(apiData);
   }, [apiData]);
 
-  console.log(countries);
-
   //get searched country from the searchfield
   function handleQueryChange(event) {
     const input = event.target.value;

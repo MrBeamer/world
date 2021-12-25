@@ -7,7 +7,7 @@ export default function DetailCard(props) {
   const { country } = useParams();
 
   const trimmedCountry = country.replace(/-/g, " ");
-  const foundCountry = countries.all.find(
+  const foundCountry = countries.find(
     (country) => country.name.common.toLowerCase() === trimmedCountry
   );
 

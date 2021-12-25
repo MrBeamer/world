@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Card } from "../../components";
 import "./cards.css";
 
@@ -30,6 +30,7 @@ export default function Cards(props) {
   }
 
   function searchAndFilter(items) {
+    // eslint-disable-next-line array-callback-return
     return items?.filter((item) => {
       if (item.region === filterParam) {
         return searchParam.some((newItem) => {
