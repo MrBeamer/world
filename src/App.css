@@ -7,6 +7,10 @@
   scroll-behavior: smooth;
 }
 
+:focus {
+  outline: 1px solid grey;
+}
+
 h1,
 h2 {
   margin: 0;
