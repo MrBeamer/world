@@ -4,30 +4,7 @@ import "./cards.css";
 
 export default function Cards(props) {
   const { theme, countries, query, filterParam } = props;
-  const [searchParam] = useState(["capital", "name"]);
-
-  /// new search test
-  function search(list) {
-    return list?.filter((country) => {
-      return searchParam.some((newCountry) => {
-        if (newCountry !== "name") {
-          return (
-            country[newCountry]
-              ?.toString()
-              ?.toLowerCase()
-              ?.indexOf(query.toLowerCase()) > -1
-          );
-        } else {
-          return (
-            country[newCountry].common
-              ?.toString()
-              ?.toLowerCase()
-              ?.indexOf(query.toLowerCase()) > -1
-          );
-        }
-      });
-    });
-  }
+  const [searchParam] = useState(["name"]);
 
   function searchAndFilter(items) {
     // eslint-disable-next-line array-callback-return
@@ -35,7 +12,7 @@ export default function Cards(props) {
       if (item.region === filterParam) {
         return searchParam.some((newItem) => {
           return (
-            item[newItem]
+            item[newItem]?.common
               ?.toString()
               ?.toLowerCase()
               ?.indexOf(query.toLowerCase()) > -1
@@ -44,7 +21,7 @@ export default function Cards(props) {
       } else if (filterParam === "All") {
         return searchParam.some((newItem) => {
           return (
-            item[newItem]
+            item[newItem]?.common
               ?.toString()
               ?.toLowerCase()
               ?.indexOf(query.toLowerCase()) > -1
@@ -54,12 +31,11 @@ export default function Cards(props) {
     });
   }
 
-  // console.log(countries.all.map((one) => console.log(one.name.common)));
-  // console.log(
-  //   countries.all.map((one) => console.log(indexOf(one.name.common)))
-  // );
-
-  console.log(search(countries));
+  function test(items) {
+    return searchParam.some((newItem) => newItem);
+  }
+  console.log(test(countries));
+  // console.log(countries.map((one) => console.log(one.name)));
 
   return (
     countries && (
