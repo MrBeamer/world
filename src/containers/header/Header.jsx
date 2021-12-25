@@ -8,7 +8,10 @@ export default function Header() {
 
   return (
     <header className={`header ${context.theme}`}>
-      <h1 className="header__title">Where in the world?</h1>
+      <div className="header__wrapper">
+        <i class="fas fa-fire header__logo"></i>
+        <h1 className="header__title">Flag Finder</h1>
+      </div>
       <Switch />
     </header>
   );
