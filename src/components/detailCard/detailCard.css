@@ -5,6 +5,7 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 32px;
+  align-items: unset;
 }
 
 .detail-card__title {
@@ -16,7 +17,6 @@
 .detail-card__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 141px;
   grid-template-rows: repeat(3, min-content);
   justify-content: space-between;
 }

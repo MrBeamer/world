@@ -94,7 +94,28 @@ body {
   border-color: #fff transparent transparent transparent;
 }
 
-/* Testing */
+/* media queries */
+@media only screen and (max-width: 1370px) {
+  .detail-card {
+    flex-direction: column;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .detail-card__text-element:last-child {
+    margin-bottom: 32px;
+  }
+
+  .detail-card__image {
+    max-width: 614px;
+  }
+
+  .detail-card__sub-content {
+    /* display: block; */
+    margin-top: 0;
+  }
+}
+
 @media only screen and (max-width: 758px) {
   .main {
     width: 100%;
