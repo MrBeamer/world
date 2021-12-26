@@ -121,7 +121,7 @@ body {
     margin-top: 0;
   }
 
-  .main {
+  .main.detail-view {
     display: grid;
     justify-content: center;
   }

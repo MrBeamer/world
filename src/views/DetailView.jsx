@@ -6,7 +6,7 @@ export default function DetailView({ countries }) {
   const context = useContext(ThemeContext);
 
   return (
-    <main className={`main ${context.theme}`}>
+    <main className={`main detail-view ${context.theme}`}>
       <DetailCard countries={countries} theme={context.theme} />
     </main>
   );
