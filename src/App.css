@@ -123,6 +123,12 @@ body {
   }
 }
 
+@media only screen and (max-width: 654px) {
+  .detail-card__image {
+    min-height: unset;
+  }
+}
+
 @media only screen and (max-width: 575px) {
   .main {
     padding: 0 27px 60px 27px;
@@ -158,15 +164,6 @@ body {
 
   .detail-card__content-block--2 {
     grid-column: 1;
-  }
-
-  .detail-card__text-element:last-child {
-    margin-bottom: 32px;
-  }
-
-  .detail-card__sub-content {
-    display: block;
-    margin-top: 0;
   }
 
   .detail-card__sub-content .detail-card__text-element {

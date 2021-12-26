@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { ThemeContext } from "./helper/ThemeContext";
 import { Routes, Route } from "react-router-dom";
 import { HomeView, DetailView } from "./views";
-import { Navbar } from "./components";
-import { Header } from "./containers";
+import { Navbar, Header } from "./components";
+import { ThemeContext } from "./helper/ThemeContext";
 import useFetch from "./helper/useFetch";
 import "./App.css";
 

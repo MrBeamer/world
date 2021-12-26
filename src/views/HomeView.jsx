@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../helper/ThemeContext";
-import { Cards } from "../containers";
+import Cards from "../components/cards/Cards";
 
 export default function HomeView({ countries, isLoading, serverError }) {
   const context = useContext(ThemeContext);
