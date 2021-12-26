@@ -1,19 +1,20 @@
 .detail-card {
   display: flex;
-  gap: 144px;
+  gap: 115px;
   font-weight: 600;
   font-size: 16px;
   line-height: 32px;
 }
 
 .detail-card__title {
-  grid-column: 1;
+  grid-column: 1/-1;
   grid-row: 1;
   margin-bottom: 21px;
 }
 
 .detail-card__content {
   display: grid;
+  grid-column-gap: 24px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, min-content);
   justify-content: space-between;
@@ -41,9 +42,13 @@
   grid-column: 2;
 }
 
+.detail-card__wrapper {
+  max-width: 560px;
+  width: 100%;
+}
+
 .detail-card__image {
   width: 100%;
-  max-width: 560px;
   border-radius: 8px;
 }
 

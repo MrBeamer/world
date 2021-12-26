@@ -23,11 +23,13 @@ export default function DetailCard(props) {
 
   return (
     <div className="detail-card">
-      <img
-        className="detail-card__image"
-        src={foundCountry.flags.png}
-        alt={`${foundCountry.name.common} flag`}
-      ></img>
+      <div className="detail-card__wrapper">
+        <img
+          className="detail-card__image"
+          src={foundCountry.flags.png}
+          alt={`${foundCountry.name.common} flag`}
+        ></img>
+      </div>
       <div className="detail-card__content">
         <h2 className="detail-card__title">{foundCountry.name.common}</h2>
         <div className="detail-card__content-block--1">
@@ -43,9 +45,6 @@ export default function DetailCard(props) {
           </p>
           <p className="detail-card__text-element">
             Region: <span>{foundCountry.region}</span>
-          </p>
-          <p className="detail-card__text-element">
-            Sub Region: <span>{foundCountry.subregion}</span>
           </p>
           <p className="detail-card__text-element">
             Capital: <span>{foundCountry.capital}</span>
@@ -64,6 +63,9 @@ export default function DetailCard(props) {
                     .join(", ")
                 : "No own currency"}
             </span>
+          </p>
+          <p className="detail-card__text-element">
+            Sub Region: <span>{foundCountry.subregion}</span>
           </p>
           <p className="detail-card__text-element">
             Languages:
