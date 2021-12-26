@@ -49,6 +49,7 @@
 
 .detail-card__image {
   width: 100%;
+  min-height: 372px;
   border-radius: 8px;
 }
 

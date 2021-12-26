@@ -113,10 +113,6 @@ body {
     margin-bottom: 32px;
   }
 
-  .detail-card__image {
-    max-width: 100%;
-  }
-
   .detail-card__sub-content {
     margin-top: 0;
   }
@@ -149,6 +145,10 @@ body {
   .detail-card {
     flex-direction: column;
     gap: 44px;
+  }
+
+  .detail-card__image {
+    min-height: 250px;
   }
 
   .detail-card__content {
