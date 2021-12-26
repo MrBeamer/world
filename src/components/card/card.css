@@ -3,6 +3,7 @@
   animation-name: reverseScale;
   animation-duration: 0.4s;
   animation-fill-mode: reverse;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
 }
 
 .card:hover {
